@@ -1,8 +1,25 @@
 PetDoctors::Application.routes.draw do
+  get "static_pages/home"
+
+  get "static_pages/help"
+
+  get "static_pages/about"
+
+  get "static_pages/contact"
+
+  devise_for :users
+
+  resources :appointments
+
+  resources :customers, :controller => 'profiles', :type => 'Customer'
+  resources :doctors, :controller => 'profiles', :type => 'Doctor'
+  resources :receptionists, :controller => 'profiles', :type => 'Receptionist'
   resources :profiles
 
-
   resources :pets
+
+
+  root :to => 'appointments#index'
 
 
   # The priority is based upon order of creation:
@@ -54,7 +71,6 @@ PetDoctors::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

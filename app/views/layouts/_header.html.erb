@@ -1,0 +1,24 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "pets Doctor", new_user_session_path, id: "logo" %>
+      <nav>
+        <ul class="nav pull-right">
+          <li><%= link_to "Home", new_user_session_path %></li>
+          <li><%= link_to "Help", static_pages_help_path %></li>
+  <% if user_signed_in? %>
+    Logged in as <strong><%= current_user.username %></strong>
+    <%= link_to 'Edit profile', edit_user_registration_path %> |
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> |
+    <%= link_to "Login", new_user_session_path %>
+  <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+

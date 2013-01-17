@@ -1,8 +1,16 @@
 class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
+  
+  load_and_authorize_resource
+  
   def index
+
+   if params[:type]
+    @profiles = Profile.where(:type => params[:type])
+   else
     @profiles = Profile.all
+   end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,12 +32,18 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   # GET /profiles/new.json
   def new
-    @profile = Profile.new
+    unless current_user.profile
+      @profile = current_user.build_profile
+      @profile.type = params[:type] || "Customer"
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @profile }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @profile }
+      end
+    else
+      redirect_to current_user.profile
     end
+
   end
 
   # GET /profiles/1/edit
@@ -40,7 +54,7 @@ class ProfilesController < ApplicationController
   # POST /profiles
   # POST /profiles.json
   def create
-    @profile = Profile.new(params[:profile])
+    @profile = current_user.profile.new(params[:profile])
 
     respond_to do |format|
       if @profile.save

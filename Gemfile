@@ -4,6 +4,8 @@ gem 'rails', '3.2.11'
 gem 'devise'
 gem 'cancan'
 
+gem 'bootstrap-sass', '2.1'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -24,6 +26,8 @@ end
 
 gem 'jquery-ui-rails'
 
+#gem 'validates_timeliness', '~> 3.0'
+#gem 'date_validator'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

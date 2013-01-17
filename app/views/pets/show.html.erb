@@ -1,8 +1,9 @@
+<div class="center hero-unit">
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Customer:</b>
-  <%= @pet.customer %>
+  <%= @pet.customer.name %>
 </p>
 
 <p>
@@ -12,7 +13,7 @@
 
 <p>
   <b>Type:</b>
-  <%= @pet.type %>
+  <%= @pet.petType %>
 </p>
 
 <p>
@@ -43,3 +44,4 @@
 
 <%= link_to 'Edit', edit_pet_path(@pet) %> |
 <%= link_to 'Back', pets_path %>
+</div>

@@ -1,0 +1,8 @@
+<div class="header" >
+    <div class="headercontent" >
+        <span >| <%= link_to "My Profile", edit_profile_path(current_user.profile)  %> |
+            <%= link_to "Appointments", :controller => :appointments, :action => :index %> |
+            <%= link_to "Pets", :controller => :pets, :action => :index %> |
+            <%#= link_to "Doctors", :doctors, :action => :index if can? :index, current_user.profile %> </span>
+    </div>
+</div>

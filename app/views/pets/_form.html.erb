@@ -11,17 +11,18 @@
     </div>
   <% end %>
 
+ <div class="form_center> 
   <div class="field">
-    <%= f.label :customer %><br />
-    <%= f.text_field :customer %>
+    <%= f.label "Customer: #{current_user.profile.name}" %><br />
   </div>
   <div class="field">
-    <%= f.label :petName %><br />
+    <%= f.label "Pet Name: " %><br />
     <%= f.text_field :petName %>
   </div>
   <div class="field">
     <%= f.label :type %><br />
-    <%= f.text_field :type %>
+   
+    <%=  f.select :petType, [['Dog','dog'],['Cat','cat'],['Bird','bird']] %>
   </div>
   <div class="field">
     <%= f.label :breed %><br />
@@ -29,21 +30,22 @@
   </div>
   <div class="field">
     <%= f.label :age %><br />
-    <%= f.number_field :age %>
+    <%= f.text_field :age %>
   </div>
   <div class="field">
     <%= f.label :weight %><br />
     <%= f.text_field :weight %>
   </div>
   <div class="field">
-    <%= f.label :dateApp %><br />
+    <%= f.label "Appointment Date: " %><br />
     <%= f.text_field :dateApp %>
   </div>
   <div class="field">
     <%= f.label :reason %><br />
-    <%= f.text_area :reason %>
+    <%= f.text_area :reason, :rows => 10,:cols => 30 %>
   </div>
   <div class="actions">
     <%= f.submit %>
+  </div>
   </div>
 <% end %>

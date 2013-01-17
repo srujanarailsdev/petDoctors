@@ -1,0 +1,37 @@
+<div class="center hero-unit">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Visitdate:</b>
+  <%= @appointment.visitDate %>
+</p>
+
+<p>
+  <b>Customer:</b>
+  <%= @appointment.customer_id %>
+</p>
+
+<p>
+  <b>Pet:</b>
+  <%= @appointment.pet_id %>
+</p>
+
+<p>
+  <b>Reminder:</b>
+  <%= @appointment.reminder %>
+</p>
+
+<p>
+  <b>Visitreason:</b>
+  <%= @appointment.visitReason %>
+</p>
+
+<p>
+  <b>Doctor:</b>
+  <%= @appointment.doctor_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+<%= link_to 'Back', appointments_path %>
+</div>

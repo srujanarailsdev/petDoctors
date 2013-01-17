@@ -8,6 +8,8 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :state
       t.string :zipcode
       t.integer :user_id, :null => false
+      t.string :school
+      t.integer :practiseYears
 
       t.timestamps
     end

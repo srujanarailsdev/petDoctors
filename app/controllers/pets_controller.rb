@@ -1,8 +1,12 @@
 class PetsController < ApplicationController
   # GET /pets
   # GET /pets.json
+
+  before_filter :authenticate_user!
+  before_filter :get_profile!
+
   def index
-    @pets = Pet.all
+    @pets = @profile.pets
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +17,7 @@ class PetsController < ApplicationController
   # GET /pets/1
   # GET /pets/1.json
   def show
-    @pet = Pet.find(params[:id])
+    @pet = @profile.pets.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +28,7 @@ class PetsController < ApplicationController
   # GET /pets/new
   # GET /pets/new.json
   def new
-    @pet = Pet.new
+    @pet = @profile.pets.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +38,13 @@ class PetsController < ApplicationController
 
   # GET /pets/1/edit
   def edit
-    @pet = Pet.find(params[:id])
+    @pet = @profile.pets.find(params[:id])
   end
 
   # POST /pets
   # POST /pets.json
   def create
-    @pet = Pet.new(params[:pet])
+    @pet = @profile.pets.new(params[:pet])
 
     respond_to do |format|
       if @pet.save
@@ -56,7 +60,7 @@ class PetsController < ApplicationController
   # PUT /pets/1
   # PUT /pets/1.json
   def update
-    @pet = Pet.find(params[:id])
+    @pet = @profile.pets.find(params[:id])
 
     respond_to do |format|
       if @pet.update_attributes(params[:pet])
@@ -72,7 +76,7 @@ class PetsController < ApplicationController
   # DELETE /pets/1
   # DELETE /pets/1.json
   def destroy
-    @pet = Pet.find(params[:id])
+    @pet = @profile.pets.find(params[:id])
     @pet.destroy
 
     respond_to do |format|
@@ -80,4 +84,10 @@ class PetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+  def get_profile!
+    @profile = current_user.profile
+  end
+
 end

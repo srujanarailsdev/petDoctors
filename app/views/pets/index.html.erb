@@ -1,37 +1,36 @@
-<h1>Listing pets</h1>
+<div class="center hero-unit">
+    <h3>Listing pets</h3>
 
-<table>
-  <tr>
-    <th>Customer</th>
-    <th>Petname</th>
-    <th>Type</th>
-    <th>Breed</th>
-    <th>Age</th>
-    <th>Weight</th>
-    <th>Dateapp</th>
-    <th>Reason</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <table border="1" align="center">
+        <tr>
+            <th>Customer</th>
+            <th>Pet Name</th>
+            <th>Type of Pet</th>
+            <th>Breed</th>
+            <th>Age of Pet</th>
+            <th>Weight</th>
+            <th>Appointment Date</th>
+            <th>Reason</th>
+        </tr>
 
-<% @pets.each do |pet| %>
-  <tr>
-    <td><%= pet.customer %></td>
-    <td><%= pet.petName %></td>
-    <td><%= pet.type %></td>
-    <td><%= pet.breed %></td>
-    <td><%= pet.age %></td>
-    <td><%= pet.weight %></td>
-    <td><%= pet.dateApp %></td>
-    <td><%= pet.reason %></td>
-    <td><%= link_to 'Show', pet %></td>
-    <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-    <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+        <% @pets.each do |pet| %>
+        <tr>
+            <td><%= pet.customer_id %></td>
+            <td><%= pet.petName %></td>
+            <td><%= pet.petType %></td>
+            <td><%= pet.breed %></td>
+            <td><%= pet.age %></td>
+            <td><%= pet.weight %></td>
+            <td><%= pet.dateApp %></td>
+            <td><%= pet.reason %></td>
+            <td><%= link_to 'Show', pet %></td>
+            <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
+            <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+    </table>
 
-<br />
+    <br />
 
-<%= link_to 'New Pet', new_pet_path %>
+    <%= link_to 'New Pet', new_pet_path, class: "btn btn-small" %>
+</div>
