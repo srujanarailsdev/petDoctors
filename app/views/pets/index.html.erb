@@ -1,0 +1,37 @@
+<h1>Listing pets</h1>
+
+<table>
+  <tr>
+    <th>Customer</th>
+    <th>Petname</th>
+    <th>Type</th>
+    <th>Breed</th>
+    <th>Age</th>
+    <th>Weight</th>
+    <th>Dateapp</th>
+    <th>Reason</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pets.each do |pet| %>
+  <tr>
+    <td><%= pet.customer %></td>
+    <td><%= pet.petName %></td>
+    <td><%= pet.type %></td>
+    <td><%= pet.breed %></td>
+    <td><%= pet.age %></td>
+    <td><%= pet.weight %></td>
+    <td><%= pet.dateApp %></td>
+    <td><%= pet.reason %></td>
+    <td><%= link_to 'Show', pet %></td>
+    <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
+    <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pet', new_pet_path %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer: MyString
+  petName: MyString
+  type: 
+  breed: MyString
+  age: 1
+  weight: 9.99
+  dateApp: 2013-01-16 17:59:01
+  reason: MyText
+
+two:
+  customer: MyString
+  petName: MyString
+  type: 
+  breed: MyString
+  age: 1
+  weight: 9.99
+  dateApp: 2013-01-16 17:59:01
+  reason: MyText
