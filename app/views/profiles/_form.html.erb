@@ -34,7 +34,7 @@
   <% if can? :update, current_user.profile  %>
     <div class="field">
       <%= f.label :Role %><br />
-      <%= f.select(:type, [['Customer', 'Customer'], ['Doctor', 'Doctor'], ['Receptionist', 'Receptionist']]) %> 
+      <%= f.select(:type, [['Receptionist', 'Receptionist']]) %> 
     </div>
   <% end %>
   <div class="actions">

@@ -9,13 +9,15 @@ class Ability
       can :show, Appointment
       can :delete, Appointment
       can :read, :all
-    else
+      can :manage, :all
+   else
       if profile.type? "Doctor"
         can :manage, :all
       end
 
       if profile.type? "Customer"
         can :update, Profile
+        
         can :read, :all
       end
     end

@@ -2,24 +2,22 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
 
-  before_filter :authenticate_user!
-  before_filter :set_profile!
-  before_filter :get_profile!
-
-  load_and_authorize_resource
-
-  def index
-    puts "%%%****&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    puts current_user.profile.inspect
-    puts "%%%****&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    @appointments = current_user.profile.appointments
-    puts "%%%****&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%"
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @appointments }
-    end
-  end
+  
+    def index
+      puts "%%%****&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%"
+            puts current_user.profile.inspect
+            puts "%%%****&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%"
+            @appointments = current_user.profile.appointments
+            @appointments_by_date = @appointments.group_by(&:visitDate)
+            puts "%%%****&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%"
+        
+      #@appointments = @profile.appointments
+      
+        respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @appointments }
+        end
+      end
 
   # GET /appointments/1
   # GET /appointments/1.json
@@ -35,9 +33,11 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   # GET /appointments/new.json
   def new
-    @appointment = current_user.profile.appointments.build
-    @doctors = Doctor.all
+      @appointment = current_user.profile.appointments.build
+      @doctors = Doctor.all
+   # @appointment = Receptionist.all
 
+ 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @appointment }
@@ -52,9 +52,11 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
-    @appointment = current_user.profile.appointments.new(params[:appointment])
-
-    respond_to do |format|
+   @appointment = current_user.profile.appointments.new(params[:appointment])
+  # @receptionist = @profile.receptionists.new(params[:receptionist])
+    #@appointment = Receptionist.all
+      
+      respond_to do |format|
       if @appointment.save
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
         format.json { render json: @appointment, status: :created, location: @appointment }
@@ -94,22 +96,5 @@ class AppointmentsController < ApplicationController
   end
 
 
-  private
-  def set_profile!
-    @profile = current_user.profile
-    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    if @profile.nil?
-     current_user.update_attributes!(:profile => Profile.new(:type => "Customer", :name => current_user.username, :user_id => current_user.id ))
-     redirect_to :controller => :appointments, :action => :index
-    end
-    puts current_user.profile.inspect
-    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-  end
 
-  def get_profile!
-    puts "%%%*************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-    @profile = current_user.profile
-    puts current_user.profile.inspect
-    puts "%%%*************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-  end
 end

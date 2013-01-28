@@ -25,8 +25,20 @@
   </tr>
 <% end %>
 </table>
-
+ <div id="articles">
+ 	<%= calendar do |appointment| %>
+ 	<%= appointment.day %>
+ 	<% if @appointments_by_date[appointment] %>
+      <ul>
+        <% @appointments_by_date[appointment].each do |appointment| %>
+          <li><%= link_to appointment.customer_id, appointment %></li>
+        <% end %>
+      </ul>
+    <% end %>
+ 	<% end %>
+ </div>
 <br />
 
-<%= link_to 'New Appointment', new_appointment_path, class: "btn btn-small" if can? :new, current_user.profile %>
+<%= link_to 'New Appointment', new_appointment_path, class: "btn btn-small" if can? :new, current_user.profile 
+%>
 </div>
